@@ -1,0 +1,25 @@
+{
+  "name": "home-automation-api",
+  "version": "1.0.0",
+  "description": "IoT project for HomeAutomation using Rpi 4B and different sensors",
+  "main": "server.js",
+  "scripts": {
+    "test": "nodemon src/server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ErickIR/home-automation-api.git"
+  },
+  "keywords": [
+    "iot"
+  ],
+  "author": "Erick Restituyo",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ErickIR/home-automation-api/issues"
+  },
+  "homepage": "https://github.com/ErickIR/home-automation-api#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
