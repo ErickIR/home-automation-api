@@ -1,0 +1,97 @@
+{
+    "swagger": "2.0",
+    "info": {
+      "version": "1.0.0", 
+      "title": "Home Automation API",
+      "description": "IoT project for HomeAutomation using Rpi 4B and different sensors"
+    },
+    "host": "localhost:3000",
+    "tags": [
+      {
+        "name": "Users",
+        "description": "API for users in the system"
+      },
+      {
+        "name": "Measurements",
+        "description": "API for measurements in the system"
+      }
+    ],
+    "consumes": ["application/json"],
+    "produces": ["application/json"],
+    "securityDefinitions": {
+        "Bearer": {
+            "description": "JWT Authorization header using the Bearer scheme. Enter 'Bearer ' and then your token in the text input below. Example: 'Bearer 12345abcdef'",
+            "name": "Authorization",
+            "in": "header",
+            "type": "apiKey",
+            "scheme": "bearer"
+        }
+    },
+    "securityRequirement": {
+        "bearer": {
+
+        }
+    },
+    "paths": {
+        "/user/{id}": {
+            "parameters": [
+                {
+                    "name": "id",
+                    "in": "path",
+                    "required": true,
+                    "description": "ID of user that we want to find",
+                    "type": "string"
+                }
+            ],
+            "security": {
+                "Bearer": []
+            },
+            "get": {
+                "tags": ["Users"],
+                "summary": "Get a user from the system",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/User"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "User": {
+            "required": ["username"],
+            "properties": {
+                "_id": {
+                    "type": "string",
+                    "uniqueItems": true
+                },
+                "username": {
+                    "type": "string",
+                    "uniqueItems": true
+                },
+                "timeStamp": {
+                    "type": "datetime"
+                },
+                "__v": {
+                    "type": "integer"
+                }
+            }
+        },
+        "Error": {
+            "properties": {
+                "error": {
+                    "type": "string"
+                }
+            }
+        }
+    }
+}

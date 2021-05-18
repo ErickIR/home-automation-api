@@ -5,18 +5,19 @@ const {
     jwtConfig
 } = require('../../../config');
 
-const getUserById = async (req, res) => {
+const getUserById = async (req, res, next) => {
     const id = req.params.id;
 
     try {
         const user = await Users.findById(id);
         res.status(200).json(user);
-    } catch (e) {
-        res.status(500).json(e.message);
+    } catch (err) {
+        err.status = 500;
+        next(err);
     }
 }
 
-const registerNewUser = async (req, res) => {
+const registerNewUser = async (req, res, next) => {
     const user = new Users({
         ...req.body
     });
@@ -41,12 +42,12 @@ const registerNewUser = async (req, res) => {
         user.passwordSalt = salt;
         const createdUser = await user.save();
         res.status(200).json(createdUser);
-    } catch (e) {
-        res.status(500).json(e.message);
+    } catch (err) {
+        next(err);
     }
 }
 
-const loginRegisteredUser = async (req, res) => {
+const loginRegisteredUser = async (req, res, next) => {
     const userCredentials = req.body;
 
     try {
@@ -87,9 +88,8 @@ const loginRegisteredUser = async (req, res) => {
         }
 
 
-    } catch (e) {
-        console.log(e);
-        return res.status(500).json(e.message);
+    } catch (err) {
+        next(err);
     }
 }
 

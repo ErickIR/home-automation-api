@@ -4,7 +4,9 @@ const {
 } = require('../../config');
 
 exports.validateJwt = (req, res, next) => {
+    console.log(req.headers)
     if (req.headers['authorization']) {
+        console.log(req.headers['authorization'])
         try {
             let authorization = req.headers['authorization'].split(' ');
             if (authorization[0] !== 'Bearer') {
