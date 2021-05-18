@@ -57,12 +57,16 @@ const weightSchema = mongoose.Schema({
   },
 });
 
-const MeasurementsModel = mongoose.model(measurementsCollection.name, measurementsSchema);
+const Measurements = mongoose.model(measurementsCollection.name, measurementsSchema);
+const Power = Measurements.discriminator('power', powerSchema);
+const Volume = Measurements.discriminator('volume', volumeSchema);
+const WaterFlow = Measurements.discriminator('waterFlow', waterFlowSchema);
+const Weight = Measurements.discriminator('weight', weightSchema);
 
 module.exports = {
-  MeasurementsModel,
-  PowerModel: MeasurementsModel.discriminator('power', powerSchema),
-  VolumeModel: MeasurementsModel.discriminator('volume', volumeSchema),
-  WaterFlowModel: MeasurementsModel.discriminator('waterFlow', waterFlowSchema),
-  WeightModel: MeasurementsModel.discriminator('weight', weightSchema),
+  Measurements,
+  Power,
+  Volume,
+  WaterFlow,
+  Weight,
 };

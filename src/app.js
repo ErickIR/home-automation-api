@@ -1,13 +1,7 @@
 const express = require('express');
 const logger = require('morgan');
 const connectToMongoDb = require('./data/mongoContext');
-const {
-  MeasurementsModel,
-  PowerModel,
-  VolumeModel,
-  WaterFlowModel,
-  WeightModel,
-} = require('./data/models/measurements.js');
+const { Measurements, Power, Volume, WaterFlow, Weight } = require('./data/models/measurements.js');
 
 const app = express();
 
@@ -17,7 +11,7 @@ app.use(logger('dev'));
 app.use(express.json());
 
 app.get('/', (req, res) => {
-  const power = new PowerModel({
+  const power = new Power({
     amperage: 1.0,
     voltage: 1.0,
     appaPower: 1.0,
@@ -25,12 +19,12 @@ app.get('/', (req, res) => {
     powerFact: 1.0,
     realPower: 1.0,
   });
-  const volume = new VolumeModel({ gallons: 1.0 });
-  const waterFlow = new WaterFlowModel({ flow: 1.0 });
-  const weight = new WeightModel({ pounds: 1.0 });
+  const volume = new Volume({ gallons: 1.0 });
+  const waterFlow = new WaterFlow({ flow: 1.0 });
+  const weight = new Weight({ pounds: 1.0 });
 
   Promise.all([power.save(), volume.save(), waterFlow.save(), weight.save()])
-    .then(() => MeasurementsModel.find())
+    .then(() => Measurements.find())
     .then((result) => {
       res.json({
         result,
