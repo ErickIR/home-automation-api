@@ -10,7 +10,10 @@ exports.validateJwt = (req, res, next) => {
             if (authorization[0] !== 'Bearer') {
                 return res.status(401).json({message: 'Unauthorized user.'});
             } else {
-                req.jwt = jwt.verify(authorization[1], jwtConfig.secret);
+                const payload = jwt.verify(authorization[1], jwtConfig.secret);
+                req.user = {
+                    id: payload.id
+                }
                 return next();
             }
 

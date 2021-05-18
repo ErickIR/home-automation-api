@@ -7,6 +7,10 @@ const measurementsSchema = mongoose.Schema({
     required: true,
     default: Date.now(),
   },
+  userId: {
+    type: mongoose.Types.ObjectId,
+    required: true,
+  }
 });
 
 const powerSchema = mongoose.Schema({
