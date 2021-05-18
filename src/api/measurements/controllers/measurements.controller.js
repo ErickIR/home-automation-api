@@ -2,7 +2,7 @@ const {
     Measurements,
     Power, Volume,
     WaterFlow, Weight
-} = require('../models/measurements');
+} = require('../models/measurements.model');
 
 const getMeasurementsByType = (req, res) => {
     const measureType = req.query.measureType;
@@ -57,10 +57,8 @@ const createWeightMeasurement = async (req, res) => {
 }
 
 const resetCollection = async (req, res) => {
-    const docsToDelete = await Measurements.find({})
-
     try {
-        const deleted = await docsToDelete.remove()
+        const deleted = await Measurements.deleteMany()
         res.status(200).json(deleted);
     } catch (e) {
         res.status(500).json(e.message);

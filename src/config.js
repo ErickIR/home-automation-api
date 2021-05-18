@@ -13,9 +13,13 @@ module.exports = {
     dbName: process.env.DB_NAME || '',
   },
   userCollection: {
-    name: process.env.USERS_COLLECTION,
+    name: process.env.USERS_COLLECTION || '',
   },
   measurementsCollection: {
-    name: process.env.MEASUREMENTS_COLLECTION,
+    name: process.env.MEASUREMENTS_COLLECTION || '',
   },
+  jwtConfig: {
+    secret: process.env.SECRET || '',
+    expire: process.env.EXPIRE_AT || '',
+  }
 };
