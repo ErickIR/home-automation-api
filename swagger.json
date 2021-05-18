@@ -19,17 +19,11 @@
     "consumes": ["application/json"],
     "produces": ["application/json"],
     "securityDefinitions": {
-        "Bearer": {
+        "BearerTokenAuth": {
+            "type": "apiKey",
             "description": "JWT Authorization header using the Bearer scheme. Enter 'Bearer ' and then your token in the text input below. Example: 'Bearer 12345abcdef'",
             "name": "Authorization",
-            "in": "header",
-            "type": "apiKey",
-            "scheme": "bearer"
-        }
-    },
-    "securityRequirement": {
-        "bearer": {
-
+            "in": "header"
         }
     },
     "paths": {
@@ -44,7 +38,7 @@
                 }
             ],
             "security": {
-                "Bearer": []
+                "BearerTokenAuth": []
             },
             "get": {
                 "tags": ["Users"],
