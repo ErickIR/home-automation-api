@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const { measurementsCollection } = require('../../config');
+const { measurementsCollection } = require('../../../config');
 
 const measurementsSchema = mongoose.Schema({
   timeStamp: {

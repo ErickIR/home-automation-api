@@ -1,7 +1,7 @@
 const express = require('express');
 const logger = require('morgan');
 const connectToMongoDb = require('./data/mongoContext');
-const { Measurements, Power, Volume, WaterFlow, Weight } = require('./data/models/measurements.js');
+const measurementsApi = require('./api/measurements/index');
 
 const app = express();
 
@@ -10,9 +10,12 @@ connectToMongoDb();
 app.use(logger('dev'));
 app.use(express.json());
 
-app.get('/', async (req, res) => {
-  var measurements = await Measurements.find();
-  res.send(measurements)
+app.use(measurementsApi);
+
+app.get('/health', (req, res) => {
+  res.json({
+    message: 'server is up!'
+  })
 });
 
 module.exports = app;
