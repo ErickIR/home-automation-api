@@ -3,7 +3,7 @@ const controller = require('../controllers/measurements.controller');
 
 const measurementRouter = express.Router();
 
-measurementRouter.get('/', controller.getMeasurementsByType);
+measurementRouter.get('/:measureType', controller.getMeasurementsByType);
 
 measurementRouter.post('/power', controller.createPowerMeasurement);
 

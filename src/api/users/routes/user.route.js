@@ -1,13 +1,12 @@
 const express = require('express');
 const controller = require('../controllers/users.controller');
-const {
-    validateJwt
-} = require('../../middlewares/auth.validation.middleware');
+const { validateJwt } = require('../../middlewares/auth.validation.middleware');
+
 const userRouter = express.Router();
 
 userRouter.get('/:id', [validateJwt, controller.getUserById]);
 
-userRouter.post('/', controller.registerNewUser);
+userRouter.post('/register', controller.registerNewUser);
 
 userRouter.post('/login', controller.loginRegisteredUser);
 
