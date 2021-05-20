@@ -23,7 +23,8 @@
             "type": "apiKey",
             "description": "JWT Authorization header using the Bearer scheme. Enter 'Bearer ' and then your token in the text input below. Example: 'Bearer 12345abcdef'",
             "name": "Authorization",
-            "in": "header"
+            "in": "header",
+            "scheme": "bearer"
         }
     },
     "paths": {
