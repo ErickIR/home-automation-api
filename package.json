@@ -21,6 +21,7 @@
   },
   "homepage": "https://github.com/ErickIR/home-automation-api#readme",
   "dependencies": {
+    "cors": "^2.8.5",
     "crypto": "^1.0.1",
     "dotenv": "^9.0.2",
     "express": "^4.17.1",

@@ -1,4 +1,5 @@
 const express = require('express');
+const cors = require('cors');
 const logger = require('morgan');
 const connectToMongoDb = require('./data/mongoContext');
 const measurementsApi = require('./api/measurements/index');
@@ -13,13 +14,17 @@ connectToMongoDb();
 
 app.use(logger('dev'));
 app.use(express.json());
-
+app.use(cors());
 app.use(measurementsApi);
 app.use(userApi);
 
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 app.use(errorHandlingMiddleware);
+
+app.get('/', (req, res) => {
+  res.send('HOME AUTOMATION API');
+});
 
 app.get('/health', (req, res) => {
   res.json({
